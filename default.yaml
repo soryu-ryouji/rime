@@ -4,16 +4,13 @@
 config_version: "2023-05-08"
 
 schema_list:
-  - schema: lufs_flypy # 小鹤双拼
-  - schema: lufs_pinyin # 朙月拼音
-  # - schema: lufs_mspy # 微软双拼
-  # - schema: lufs_dpy # 自然码双拼
-  # - schema: lufs_pyjj # 拼音加加双拼
+  - schema: ryouji_flypy
+  - schema: ryouji_pinyin
 
 switcher:
   caption: "[方案菜单]"
   hotkeys:
-    - F2
+    - "Shift+F4"
   save_options:
     - ascii_mode
     - full_shape
@@ -25,7 +22,7 @@ switcher:
   option_list_separator: "/"
 
 menu:
-  page_size: 4
+  page_size: 5
 
 punctuator:
   full_shape:
@@ -44,10 +41,10 @@ recognizer:
 ascii_composer:
   good_old_caps_lock: true
   switch_key:
-    Shift_L: noop
-    Shift_R: commit_code # macOS 上此项无效，Windows 可用右 Shift 切换中英输入
+    Shift_L: commit_code
+    # Shift_R: commit_code              # macOS 上此项无效，Windows 可用右 Shift 切换中英输入
     Control_L: noop
-    Control_R: noop # macOS 上此项无效，Windows 上可自行定义
+    Control_R: noop                     # macOS 上此项无效，Windows 上可自行定义
     Caps_Lock: commit_code
     Eisu_toggle: clear
 
@@ -56,6 +53,9 @@ key_binder:
   select_last_character: "bracketright" # lua 选词快捷键，选最后一个字
   bindings:
     # Tab / Shift + Tab 翻页
+    # - { when: composing, accept: Tab, send: Page_Down } # Tab 向下翻页
+    # - { when: composing, accept: Shift+Tab, send: Page_Up } # Shift + Tab 向上翻页
+
     - { when: composing, accept: Tab, send: Page_Down } # Tab 向下翻页
     - { when: composing, accept: Shift+Tab, send: Page_Up } # Shift + Tab 向上翻页
 

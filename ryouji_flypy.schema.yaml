@@ -2,16 +2,16 @@
 # encoding: utf-8
 
 schema:
-  schema_id: lufs_flypy
+  schema_id: ryouji_flypy
   name: 小鹤双拼
   version: "2023-05-08"
   author:
     - double pinyin layout by 鶴
     - Rime schema by 佛振 <chen.sst@gmail.com>
     - Modified by Lufs_X <i@isteed.cc>
+    - Modified by ryouji
   description: |
-    小鹤双拼方案。
-    稍微的改了一下（小声
+    基于Lufs修改了一些
 
 switches:
   - name: ascii_mode
@@ -30,7 +30,7 @@ switches:
 
 engine:
   processors:
-    # - ascii_composer # Windows 用户请解除此行注释，否则将会无法切换到英文输入
+    - ascii_composer # Windows 用户请解除此行注释，否则将会无法切换到英文输入
     - recognizer
     - lua_processor@select_character # lua 选词扩展，如需关闭请注释
     - key_binder
@@ -47,22 +47,22 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
-    - lua_translator@date_translator # 动态日期时间输入
-    - lua_translator@unicode_input # Unicode 输入支持
-    - table_translator@custom_phrase # 用户自定义词典
+    - lua_translator@date_translator    # 动态日期时间输入
+    - lua_translator@unicode_input      # Unicode 输入支持
+    - table_translator@custom_phrase    # 用户自定义词典
     - script_translator
   filters:
     - simplifier@emoji_suggestion
-    - simplifier@traditionalize # 简繁转化
-    - uniquifier # 去重
-    # - lua_filter@long_phrase_first # 最长词组和单字在先
-    # - lua_filter@single_char_first # 单字优先
-    # - lua_filter@single_char_only # 只显示单字
+    - simplifier@traditionalize         # 简繁转化
+    - uniquifier                        # 去重
+    # - lua_filter@long_phrase_first    # 最长词组和单字在先
+    # - lua_filter@single_char_first    # 单字优先
+    # - lua_filter@single_char_only     # 只显示单字
 
 traditionalize:
   option_name: traditionalization
-  opencc_config: s2t.json # s2t.json | s2hk.json | s2tw.json | s2twp.json
-  tips: none # 转换提示: all 显示 | char 仅单字显示 | none 不显示。
+  opencc_config: s2t.json               # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  tips: none                            # 转换提示: all 显示 | char 仅单字显示 | none 不显示。
 
 emoji_suggestion:
   opencc_config: emoji.json
